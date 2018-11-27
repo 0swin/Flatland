@@ -1,16 +1,28 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <span>HELLO WORLD!!!!!!</span>
-    <script type="text/javascript">
-    var time = Date.now();
-    console.log(time);
-      
+<html>
 
-    </script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <title>Flatlan_prototype_01</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <!-- We get the webcam source as video source and hide it -->
+  <video id="webcam" style="display: none;" playsinline></video>
+  <!-- We create a canvas to retreive camera data -->
+  <canvas id="imageData"></canvas>
+  <div id="faceOverlay"></div>
+  <div id="CTA">
+    <h1>FLATLAND 👌👌👌👌</h1>
+    <h2>A journey into dimension</h2>
+  </div>
+  <!-- Load BRFv4 script -->
+  <script src="./js/utils/BRFv4Stats.js"></script>
+  <script src="./js/BRFv4.js"></script>
+  <script src="./js/Controller.js"></script>
+  <script src="./js/flatland.js"></script>
+
+
+</body>
+
 </html>
