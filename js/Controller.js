@@ -156,6 +156,38 @@ Controller.prototype.getYawnFactor = function(face) {
   return yawnFactor;
 }
 
+Controller.prototype.getEyebrownHeightFactor = function(face) {
+  let eyebrownPoints = [face.points[19].x, face.points[19].y, face.points[24].x, face.points[24].y];
+  let eyePoints = [face.points[38].x, face.points[38].y, face.points[43].x, face.points[43].y];
+  let eyeInnerPoints = [face.points[39].x, face.points[39].y, face.points[42].x, face.points[42].y];
+  //define mouth
+  let eyebrownLeft = [eyebrownPoints[0], eyebrownPoints[1]];
+  let eyebrownRight = [eyebrownPoints[2], eyebrownPoints[3]];
+  //efine eyes
+  let eyeLeft = [eyePoints[0], eyePoints[1]];
+  let eyeRight = [eyePoints[2], eyePoints[3]];
+  //define innerEye
+  let eyeInnerLeft = [eyeInnerPoints[0], eyeInnerPoints[1]];
+  let eyeInnerRight = [eyeInnerPoints[2], eyeInnerPoints[3]];
+
+  let eyebrownleftDist = getDist(eyebrownLeft[0], eyebrownLeft[1], eyeLeft[0], eyeLeft[1]);
+  let eyebrownRightDist = getDist(eyebrownRight[0], eyebrownRight[1], eyeRight[0], eyeRight[1]);
+  let eyeDist = getDist(eyeInnerLeft[0], eyeInnerLeft[1], eyeInnerRight[0], eyeInnerRight[1]);
+  let eyebrownLeftHeightFactor = (eyebrownleftDist * eyebrownleftDist) / eyeDist;
+  let eyebrownRightHeightFactor = (eyebrownRightDist * eyebrownRightDist) / eyeDist;
+
+  eyebrownLeftHeightFactor *= 0.018;
+  eyebrownRightHeightFactor *= 0.018;
+
+  //clamp factor
+  if (eyebrownLeftHeightFactor < 0.0) eyebrownLeftHeightFactor = 0.0;
+  if (eyebrownLeftHeightFactor > 1.0) eyebrownLeftHeightFactor = 1.0;
+  if (eyebrownRightHeightFactor < 0.0) eyebrownRightHeightFactor = 0.0;
+  if (eyebrownRightHeightFactor > 1.0) eyebrownRightHeightFactor = 1.0;
+
+  return [eyebrownLeftHeightFactor, eyebrownRightHeightFactor];
+}
+
 Controller.prototype.update = function() {
   this.startStats();
   this.drawUser();
