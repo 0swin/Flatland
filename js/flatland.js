@@ -32,13 +32,45 @@ function displayCTA(face, untrackState) {
 }
 
 /*-------------------------------------------------------
-CECI SONT MES VARIABLES !!:!!!!!!!!!!!
+Variables
 --------------------------------------------------------*/
-var ctrl = new Controller(1280, 720, 30, "webcam", "canvasData");
-var cta = document.getElementById("CTA");
-var timer;
-var boolDisplayCTA = true;
-ctrl.setROI(640, 480);
-ctrl.setNumberOfFacesToTrack(2);
-ctrl.initTracking();
-ctrl.setDebug(true);
+// var ctrl = new Controller(1280, 720, 30, "webcam", "canvasData");
+// var cta = document.getElementById("CTA");
+// var timer;
+// var boolDisplayCTA = true;
+//
+// ctrl.setROI(640, 480);
+// ctrl.setNumberOfFacesToTrack(2);
+// ctrl.initTracking();
+// ctrl.setDebug(true);
+
+/*-------------------------------------------------------
+FLATLANDER GENERATION
+--------------------------------------------------------*/
+
+var lottieContainer = document.getElementById("lottieContainer");
+
+for (i = 1; i <= 6; i++) {
+  // GÉNÉRER UNE DIV POUR CHAQUE MORCEAU DE VISAGE
+  var facePart = document.createElement("div");
+  facePart.id = "facePart" + i;
+  lottieContainer.appendChild(facePart)
+  facePart.style.zIndex = i;
+  facePart.style.position = "absolute";
+
+  function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  var animationData = {
+    container: facePart,
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+    path: 'json/calque1/' + getRandomInt(1, 3) + '.json'
+  };
+
+  lottie.loadAnimation(animationData);
+}

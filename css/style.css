@@ -1,7 +1,6 @@
 body {
   margin: 0;
   padding: 0;
-  background: #000;
 }
 
 #faceOverlay {
@@ -32,4 +31,39 @@ body {
   -webkit-transition: opacity 0.5s;
   -o-transition: opacity 0.5s;
   transition: opacity 0.5s;
+}
+
+#lottieContainer {
+  width: 200px;
+  height: 200px;
+}
+
+#lottieContainer #stroke {
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  stroke-width: 20px;
+}
+
+#lottieContainer #facePart1 #fill {
+  fill: aqua;
+}
+
+#lottieContainer #facePart2 #fill {
+  fill: pink;
+}
+
+#lottieContainer #facePart3 #fill {
+  fill: green;
+}
+
+#lottieContainer #facePart4 #fill {
+  fill: blue;
+}
+
+#lottieContainer #facePart5 #fill {
+  fill: white;
+}
+
+#lottieContainer #facePart6 #fill {
+  fill: red;
 }
