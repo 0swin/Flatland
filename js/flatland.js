@@ -56,16 +56,15 @@ FLATLANDER GENERATION
 
 var lottieContainer = document.getElementById("lottieContainer");
 
-
-for (var i = 1; i <= 6; i++) {
+function createFacePart(height, width, calque) {
   // GÉNÉRER UNE DIV POUR CHAQUE MORCEAU DE VISAGE
   var facePart = document.createElement("div");
   facePart.id = "facePart" + i;
   lottieContainer.appendChild(facePart)
   facePart.style.zIndex = i;
   facePart.style.position = "absolute";
-  facePart.style.height = "200px";
-  facePart.style.width = "200px";
+  facePart.style.height = height + "px";
+  facePart.style.width = width + "px";
 
   // POSITION ALEATOIRE
   facePart.style.top = getRandomInt(-50, 250) + "px";
@@ -80,11 +79,15 @@ for (var i = 1; i <= 6; i++) {
 
   var animationData = {
     container: facePart,
-    renderer: 'svg',
+    renderer: "svg",
     loop: true,
     autoplay: true,
-    path: 'json/calque1/' + getRandomInt(1, 3) + '.json'
+    path: "json/" + calque + "/" + getRandomInt(1, 4) + ".json"
   };
 
   lottie.loadAnimation(animationData);
+}
+
+for (var i = 1; i <= 6; i++) {
+  createFacePart(100, 100, "calque1")
 }
