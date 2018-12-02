@@ -44,27 +44,3 @@ body {
   stroke-linecap: round;
   stroke-width: 20px;
 }
-
-#lottieContainer #facePart1 #fill {
-  fill: aqua;
-}
-
-#lottieContainer #facePart2 #fill {
-  fill: pink;
-}
-
-#lottieContainer #facePart3 #fill {
-  fill: green;
-}
-
-#lottieContainer #facePart4 #fill {
-  fill: blue;
-}
-
-#lottieContainer #facePart5 #fill {
-  fill: white;
-}
-
-#lottieContainer #facePart6 #fill {
-  fill: red;
-}
