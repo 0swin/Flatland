@@ -1,28 +1,46 @@
-<html>
+<meta charset="UTF-8">
+<title>Flatlan_prototype_01</title>
+<style>
+body{
+  margin : 0;
+  padding: 0;
+  background: #000;
+}
 
-<head>
-  <meta charset="UTF-8">
-  <title>Flatland_prototype_01</title>
-  <link rel="stylesheet" href="css/style.css">
+#CTA{
+  color : white;
+  background: blue;
+  position : absolute;
+  top:0;
+  width : 100%;
+  height : 100%;
+  text-align : center;
+  transition : opacity 0.5s;
+}
+#lottieContainer{
+  color : white;
+  text-align: center;
+}
+</style>
 </head>
-
 <body>
-  <!-- We get the webcam source as video source and hide it -->
-  <video id="webcam" style="display: none;" playsinline></video>
-  <!-- We create a canvas to retreive camera data -->
-  <canvas id="imageData"></canvas>
-  <div id="faceOverlay"></div>
-  <div id="CTA">
-    <h1>FLATLAND 👌👌👌👌</h1>
-    <h2>A journey into dimension</h2>
-  </div>
-  <!-- Load BRFv4 script -->
-  <script src="./js/utils/BRFv4Stats.js"></script>
-  <script src="./js/BRFv4.js"></script>
-  <script src="./js/Controller.js"></script>
-  <script src="./js/flatland.js"></script>
+<!-- We get the webcam source as video source and hide it -->
+<video id="webcam" style="display: none;" playsinline></video>
+<!-- We create a canvas to retreive camera data -->
+<canvas id="canvasData" style="display: none;" ></canvas>
+<div id="lottieContainer">ICI MON ANIM</div>
+
+<div id="CTA">
+  <h1>FLATLAND</h1>
+  <h2>A journey into dimension</h2>
+</div>
+
+<!-- Load BRFv4 script -->
+<script src="./js/utils/BRFv4Stats.js"></script>
+<script src="./js/BRFv4.js"></script>
+<script src="./js/Controller.js"></script>
+<script src="./js/flatland.js"></script>
 
 
 </body>
-
 </html>

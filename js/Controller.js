@@ -96,6 +96,62 @@ Controller.prototype.drawUser = function(imageDataCtx, resolution, webcam){
   this.imageDataCtx.setTransform( 1.0, 0, 0, 1, 0, 0); // unmirrored for drawing the results
 }
 
+Controller.prototype.getSmileFactor = function(face){
+  let mouthPoints = [face.points[48].x, face.points[48].y, face.points[54].x,  face.points[54].y];
+  let eyePoints = [face.points[39].x, face.points[39].y, face.points[42].x,  face.points[42].y];
+
+  //define mouth
+  let mouthCornerLeft = [mouthPoints[0], mouthPoints[1]];
+  let mouthCornerRight = [mouthPoints[2], mouthPoints[3]];
+  //efine eyes
+  let eyeInnerCorner = [eyePoints[0], eyePoints[1]];
+  let eyeOuterCorner = [eyePoints[2], eyePoints[3]];
+
+  let mouthDist = getDist(mouthCornerLeft[0], mouthCornerLeft[1], mouthCornerRight[0], mouthCornerRight[1]);
+  let eyeDist = getDist(eyeInnerCorner[0], eyeInnerCorner[1], eyeOuterCorner[0], eyeOuterCorner[1]);
+  smileFactor = mouthDist / eyeDist;
+
+  //define smileFactor
+  smileFactor -= 1.40;// 1.40 - neutral, 1.70 smiling
+
+  if(smileFactor > 0.25) smileFactor = 0.25;
+  if(smileFactor < 0.00) smileFactor = 0.00;
+
+  smileFactor *= 4.0;
+
+  if(smileFactor < 0.0) smileFactor = 0.0;
+  if(smileFactor > 1.0) smileFactor = 1.0;
+
+  return smileFactor;
+}
+
+Controller.prototype.getYawnFactor = function(face){
+  let mouthPoints = [face.points[62].x, face.points[62].y, face.points[66].x,  face.points[66].y];
+  let eyePoints = [face.points[39].x, face.points[39].y, face.points[42].x,  face.points[42].y];
+  //define mouth
+  let mouthCornerLeft = [mouthPoints[0], mouthPoints[1]];
+  let mouthCornerRight = [mouthPoints[2], mouthPoints[3]];
+  //efine eyes
+  let eyeInnerCorner = [eyePoints[0], eyePoints[1]];
+  let eyeOuterCorner = [eyePoints[2], eyePoints[3]];
+
+  let mouthDist = getDist(mouthCornerLeft[0], mouthCornerLeft[1], mouthCornerRight[0], mouthCornerRight[1]);
+  let eyeDist = getDist(eyeInnerCorner[0], eyeInnerCorner[1], eyeOuterCorner[0], eyeOuterCorner[1]);
+  yawnFactor = mouthDist / eyeDist;
+
+  //remove smiling
+  yawnFactor -= 0.35;
+  if(yawnFactor < 0.0) yawnFactor = 0.0;
+  //update this a scale up
+  yawnFactor *= 4.0;
+
+  //clamp factor
+  if(yawnFactor < 0.0) yawnFactor = 0.0;
+  if(yawnFactor > 1.0) yawnFactor = 1.0;
+
+  return yawnFactor;
+}
+
 Controller.prototype.update = function(){
   this.startStats();
   this.drawUser();
@@ -103,4 +159,14 @@ Controller.prototype.update = function(){
   this.handleTrackingResults(this.brfManager.getFaces());
   if(this.debug) this.displayBRFv4Debug(this.brfManager.getFaces());
   this.endStats();
+}
+
+
+//helpers
+function getDist(x1, y1, x2, y2){
+  var dx = x1 - x2; //longueur c en x
+  var dy = y1 - y2; //longueur c en y
+  var dxCube = dx * dx;
+  var dyCube = dy * dy;
+  return Math.sqrt(dxCube + dyCube);
 }
