@@ -31,6 +31,12 @@ function displayCTA(face, untrackState) {
   }
 }
 
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 /*-------------------------------------------------------
 Variables
 --------------------------------------------------------*/
@@ -57,12 +63,12 @@ for (i = 1; i <= 6; i++) {
   lottieContainer.appendChild(facePart)
   facePart.style.zIndex = i;
   facePart.style.position = "absolute";
+  facePart.style.height = "200px"
+  facePart.style.width = "200px"
+  facePart.style.top = getRandomInt(-50, 250)+"px"
+  facePart.style.left = getRandomInt(-50, 250)+"px"
 
-  function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
+  // POSITIONNER ALEATOIREMENT LA DIV
 
   var animationData = {
     container: facePart,
