@@ -95,7 +95,7 @@ function createFacePart(height, width, posMin, posMax, calque, calqueMin, calque
   //we add an event to get all the elements when tey are add to the DOM
   anim.addEventListener('DOMLoaded', function() {
     console.log("facePart" + index);
-    let child = getAllChild("facePart" + index, "#fill");
+    let child = getAllChild("facePart" + index, ".fill");
     for (let j = 0; j < child.length; j++) {
       console.log(index);
       // child.setAttribute("fill", hsl);
@@ -105,9 +105,9 @@ function createFacePart(height, width, posMin, posMax, calque, calqueMin, calque
 };
 
 for (var i = 1; i <= 3; i++) {
-  createFacePart(350, 350, 0, 25, "calque2", 1, 3);
+  createFacePart(350, 350, 0, 25, "calque2", 1, 7);
 };
 
-for (var i = 1; i <= 6; i++) {
+for (var i = 1; i <= 3; i++) {
   createFacePart(100, 100, 25, 225, "calque1", 1, 6);
 };
