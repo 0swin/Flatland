@@ -38,7 +38,7 @@ function getRandomInt(min, max) {
 }
 
 function getAllChild(parent, selector) {
-  var element = document.getElementById(parent);
+  let element = document.getElementById(parent);
   return element.querySelectorAll(selector);
 }
 
@@ -82,12 +82,6 @@ function createFacePart(height, width, calque) {
   var hsl = "hsl(" + hue + "," + saturation + "," + lightness + ")";
   console.log(hsl);
 
-  var child = getAllChild("facePart" + i, "#fill");
-  console.log(child.length)
-  for (let i = 0; i < child.length; i++) {
-    console.log(i)
-  }
-
   var animationData = {
     container: facePart,
     renderer: "svg",
@@ -95,9 +89,19 @@ function createFacePart(height, width, calque) {
     autoplay: true,
     path: "json/" + calque + "/" + getRandomInt(1, 4) + ".json"
   };
-
-  lottie.loadAnimation(animationData);
+  var anim = lottie.loadAnimation(animationData);
+  //we define a local variable to save the index in the for loop
+  let index = i;
+  //we add an event to get all the elements when tey are add to the DOM
+  anim.addEventListener('DOMLoaded', function(){
+      console.log("facePart" + index);
+      let child = getAllChild("facePart" + index, "#fill");
+      for (let j = 0; j < child.length; j++) {
+          console.log(index)
+      }
+  });
 }
+
 
 for (var i = 1; i <= 6; i++) {
   createFacePart(100, 100, "calque1")
