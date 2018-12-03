@@ -108,6 +108,6 @@ for (var i = 1; i <= 3; i++) {
   createFacePart(350, 350, 0, 25, "calque2", 1, 7);
 };
 
-for (var i = 1; i <= 3; i++) {
+for (var i = 4; i <= 7; i++) {
   createFacePart(100, 100, 25, 225, "calque1", 1, 6);
 };
