@@ -37,6 +37,11 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function getAllChild(parent, selector) {
+  var element = document.getElementById(parent);
+  return element.querySelectorAll(selector);
+}
+
 /*-------------------------------------------------------
 Variables
 --------------------------------------------------------*/
@@ -76,6 +81,12 @@ function createFacePart(height, width, calque) {
   var lightness = getRandomInt(50, 100);
   var hsl = "hsl(" + hue + "," + saturation + "," + lightness + ")";
   console.log(hsl);
+
+  var child = getAllChild("facePart" + i, "#fill");
+  console.log(child.length)
+  for (let i = 0; i < child.length; i++) {
+    console.log(i)
+  }
 
   var animationData = {
     container: facePart,
