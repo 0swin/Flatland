@@ -79,7 +79,7 @@ function createFacePart(height, width, posMin, posMax, calque, calqueMin, calque
   var hue = getRandomInt(0, 359);
   var saturation = getRandomInt(50, 100);
   var lightness = getRandomInt(50, 100);
-  var hsl = "hsl(" + hue + "," + saturation + "," + lightness + ")";
+  var hsl = "hsl(" + hue + "," + saturation + "%," + lightness + "%)";
   console.log(hsl);
 
   var animationData = {
@@ -97,9 +97,8 @@ function createFacePart(height, width, posMin, posMax, calque, calqueMin, calque
     console.log("facePart" + index);
     let child = getAllChild("facePart" + index, ".fill");
     for (let j = 0; j < child.length; j++) {
-      console.log(index);
-      // child.setAttribute("fill", hsl);
-      // child.style.fill = hsl;
+      console.log(child[j]);
+      child[j].style.fill = hsl;
     };
   });
 };
