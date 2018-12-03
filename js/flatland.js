@@ -77,8 +77,8 @@ function createFacePart(height, width, posMin, posMax, calque, calqueMin, calque
 
   // COULEUR ALEATOIRE
   var hue = getRandomInt(0, 359);
-  var saturation = getRandomInt(50, 100);
-  var lightness = getRandomInt(50, 100);
+  var saturation = getRandomInt(80, 100);
+  var lightness = getRandomInt(40, 60);
   var hsl = "hsl(" + hue + "," + saturation + "%," + lightness + "%)";
   console.log(hsl);
 
