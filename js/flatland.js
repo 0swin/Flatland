@@ -61,7 +61,7 @@ FLATLANDER GENERATION
 
 var lottieContainer = document.getElementById("lottieContainer");
 
-function createFacePart(height, width, posMin, posMax, calque) {
+function createFacePart(height, width, posMin, posMax, calque, calqueMin, calqueMax) {
   // GÉNÉRER UNE DIV POUR CHAQUE MORCEAU DE VISAGE
   var facePart = document.createElement("div");
   facePart.id = "facePart" + i;
@@ -87,24 +87,27 @@ function createFacePart(height, width, posMin, posMax, calque) {
     renderer: "svg",
     loop: true,
     autoplay: true,
-    path: "json/" + calque + "/" + getRandomInt(1, 6) + ".json"
+    path: "json/" + calque + "/" + getRandomInt(calqueMin, calqueMax) + ".json"
   };
   var anim = lottie.loadAnimation(animationData);
   //we define a local variable to save the index in the for loop
   let index = i;
   //we add an event to get all the elements when tey are add to the DOM
-  anim.addEventListener('DOMLoaded', function(){
-      console.log("facePart" + index);
-      let child = getAllChild("facePart" + index, "#fill");
-      for (let j = 0; j < child.length; j++) {
-          console.log(index);
-          child.setAttribute("fill", hsl);
-          child.style.fill = hsl;
-      };
+  anim.addEventListener('DOMLoaded', function() {
+    console.log("facePart" + index);
+    let child = getAllChild("facePart" + index, "#fill");
+    for (let j = 0; j < child.length; j++) {
+      console.log(index);
+      // child.setAttribute("fill", hsl);
+      // child.style.fill = hsl;
+    };
   });
-}
-
+};
 
 for (var i = 1; i <= 3; i++) {
-  createFacePart(100, 100, 50, 200, "calque1")
-}
+  createFacePart(350, 350, 0, 25, "calque2", 1, 3);
+};
+
+for (var i = 1; i <= 6; i++) {
+  createFacePart(100, 100, 25, 225, "calque1", 1, 6);
+};
