@@ -38,13 +38,15 @@ body {
   height: 400px;
   position: relative;
   border: solid 1px rgba(0, 128, 255, 0.5);
+  -webkit-transform: translate(20%, 20%);
+  -ms-transform: translate(20%, 20%);
+  transform: translate(20%, 20%);
 }
 
 #lottieContainer .stroke {
   stroke-linejoin: round;
   stroke-linecap: round;
   stroke-width: 15px;
-  stroke: black;
 }
 
 #facePart1 {
