@@ -87,7 +87,7 @@ function createGlobalColor() {
 
 var globalHue = createGlobalColor()
 
-function createFacePart(height, width, posMin, posMax, rotMin, rotMax, calque, calqueMin, calqueMax) {
+function createFacePart(height, width, posMin, posMax, rotMin, rotMax, calque, calqueMin, calqueMax, hueOffset) {
   // GÉNÉRER UNE DIV POUR CHAQUE MORCEAU DE VISAGE
   var facePart = document.createElement("div");
   facePart.id = "facePart" + i;
@@ -102,7 +102,7 @@ function createFacePart(height, width, posMin, posMax, rotMin, rotMax, calque, c
   facePart.style.top = getRandomInt(posMin, posMax) + "%";
   facePart.style.left = getRandomInt(posMin, posMax) + "%";
   // COULEUR FOND ALEATOIRE
-  var hue = globalHue + getRandomInt(0, 60)
+  var hue = globalHue + hueOffset + getRandomInt(0, 40)
   var saturation = getRandomInt(60, 100)
   var lightness = getRandomInt(40, 60)
   var hslFill = "hsl(" + hue + "," + saturation + "%," + lightness + "%)";
@@ -138,9 +138,9 @@ function createFacePart(height, width, posMin, posMax, rotMin, rotMax, calque, c
 };
 
 for (var i = 1; i <= 3; i++) {
-  createFacePart(75, 75, 12.5, 25, 0, 360, "calque2", 1, 12);
+  createFacePart(75, 75, 12.5, 25, 0, 360, "calque2", 1, 12, 0);
 };
 
 for (var i = 4; i <= 7; i++) {
-  createFacePart(25, 25, 12.5, 62.5, -30, 0, "calque1", 1, 7);
+  createFacePart(25, 25, 12.5, 62.5, -30, 0, "calque1", 1, 7, 180);
 };
