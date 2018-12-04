@@ -1,6 +1,7 @@
 body {
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }
 
 #faceOverlay {
@@ -27,6 +28,11 @@ body {
 #webcam {
   -webkit-transform: rotateY(180deg);
   transform: rotateY(180deg);
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
 }
 
 #CTA {

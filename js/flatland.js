@@ -1,3 +1,18 @@
+/*-------------------------------------------------------
+Variables
+--------------------------------------------------------*/
+var webcamWidth = 1280;
+var webcamHeight = 720;
+var ctrl = new Controller(webcamWidth, webcamHeight, 30, "webcam", "canvasData");
+var cta = document.getElementById("CTA");
+var timer;
+var boolDisplayCTA = true;
+
+ctrl.setROI(640, 480);
+ctrl.setNumberOfFacesToTrack(2);
+ctrl.initTracking();
+ctrl.setDebug(true);
+
 Controller.prototype.handleTrackingResults = function(faces) {
 
   var firstFace = faces[0];
@@ -23,19 +38,18 @@ Controller.prototype.handleTrackingResults = function(faces) {
   //get the face overlay div
   var scale, ix, iy;
   var imageData;
-  var divOverlay = document.getElementById("_faceOverlay");
+  var divOverlay = document.getElementById("faceOverlay");
 
-  let nx = (firstFace.bounds.x / 1280.0) * 1280;// * scale + ix;
-  let ny = (firstFace.bounds.y / 720.0) * 720;// * scale + iy;
-  let nw = firstFace.bounds.width;
-  let nh = firstFace.bounds.height;
+  let nx = (firstFace.bounds.x / webcamWidth) * window.innerWidth; // * scale + ix;
+  let ny = (firstFace.bounds.y / webcamHeight) * window.innerHeight; // * scale + iy;
+  let nw = (firstFace.bounds.width / webcamWidth) * window.innerWidth;
+  let nh = (firstFace.bounds.height / webcamHeight) * window.innerHeight;
   let degrees = firstFace.rotationZ * 180 / Math.PI;
-  lottieContainer.style.transform = 'rotate(' + degrees + 'deg)';
+  lottieContainer.style.transform = 'rotate(' + degrees + 'deg) scale(1.3)';
   lottieContainer.style.top = ny + "px";
   lottieContainer.style.left = nx + "px";
   lottieContainer.style.height = nh + "px";
   lottieContainer.style.width = nw + "px";
-
 }
 
 function launchXP() {
@@ -59,19 +73,6 @@ function getAllChild(parent, selector) {
   let element = document.getElementById(parent);
   return element.querySelectorAll(selector);
 }
-
-/*-------------------------------------------------------
-Variables
---------------------------------------------------------*/
-var ctrl = new Controller(640, 360, 30, "webcam", "canvasData");
-var cta = document.getElementById("CTA");
-var timer;
-var boolDisplayCTA = true;
-
-ctrl.setROI(640, 480);
-ctrl.setNumberOfFacesToTrack(2);
-ctrl.initTracking();
-ctrl.setDebug(true);
 
 /*-------------------------------------------------------
 FLATLANDER GENERATION
