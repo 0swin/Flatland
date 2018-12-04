@@ -8,7 +8,7 @@ var cta = document.getElementById("CTA");
 var timer;
 var boolDisplayCTA = true;
 
-ctrl.setROI(640, 480);
+ctrl.setROI(webcamWidth, webcamHeight);
 ctrl.setNumberOfFacesToTrack(2);
 ctrl.initTracking();
 ctrl.setDebug(true);
@@ -16,7 +16,7 @@ ctrl.setDebug(true);
 Controller.prototype.handleTrackingResults = function(faces) {
 
   var firstFace = faces[0];
-  //console.log(firstFace);
+  // console.log(firstFace);
   if (firstFace.state === this.brfv4.BRFState.FACE_TRACKING_START ||
     firstFace.state === this.brfv4.BRFState.FACE_TRACKING) {
     if (boolDisplayCTA === true) {
@@ -26,7 +26,7 @@ Controller.prototype.handleTrackingResults = function(faces) {
     }
     var smile = this.getSmileFactor(firstFace);
     var yawn = this.getYawnFactor(firstFace);
-    console.log("smile factor: " + smile + " yawn factor: " + yawn)
+    // console.log("smile factor: " + smile + " yawn factor: " + yawn)
   } else {
     if (boolDisplayCTA === false) {
       timer = setTimeout(displayCTA, 5000, firstFace, this.brfv4.BRFState.FACE_DETECTION);
@@ -107,8 +107,8 @@ function createFacePart(height, width, posMin, posMax, rotMin, rotMax, calque, c
   var lightness = getRandomInt(40, 60)
   var hslFill = "hsl(" + hue + "," + saturation + "%," + lightness + "%)";
   var hslStroke = "hsl(" + hue + "," + (saturation + 20) + "%," + (lightness - 30) + "%)";
-  console.log("Fill " + hslFill);
-  console.log("Stroke " + hslStroke);
+  // console.log("Fill " + hslFill);
+  // console.log("Stroke " + hslStroke);
 
   var animationData = {
     container: facePart,
