@@ -20,6 +20,15 @@ body {
   margin: 10px 0 0 10px;
 }
 
+#canvasData {
+  display: none;
+}
+
+#webcam {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
 #CTA {
   color: white;
   position: absolute;

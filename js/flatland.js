@@ -25,8 +25,8 @@ Controller.prototype.handleTrackingResults = function(faces) {
   var imageData;
   var divOverlay = document.getElementById("_faceOverlay");
 
-  let nx = (firstFace.bounds.x / 640.0) * 1280;// * scale + ix;
-  let ny = (firstFace.bounds.y / 480.0) * 720;// * scale + iy;
+  let nx = (firstFace.bounds.x / 1280.0) * 1280;// * scale + ix;
+  let ny = (firstFace.bounds.y / 720.0) * 720;// * scale + iy;
   let nw = firstFace.bounds.width;
   let nh = firstFace.bounds.height;
   let degrees = firstFace.rotationZ * 180 / Math.PI;
@@ -63,7 +63,7 @@ function getAllChild(parent, selector) {
 /*-------------------------------------------------------
 Variables
 --------------------------------------------------------*/
-var ctrl = new Controller(640, 480, 25, "webcam", "canvasData");
+var ctrl = new Controller(640, 360, 30, "webcam", "canvasData");
 var cta = document.getElementById("CTA");
 var timer;
 var boolDisplayCTA = true;
