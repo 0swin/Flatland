@@ -30,13 +30,13 @@ body
 #lottieContainer
   width: 400px
   height: 400px
-  position: relative
+  position: absolute
+  top: 0
+  left: 0
   border: solid 1px rgba(0, 255/2, 255, 0.5)
-  transform: translate(20%, 20%)
   .stroke
     stroke-linejoin: round
     stroke-linecap: round
-    stroke-width: 15px
 
 @for $i from 1 through 7
   #facePart#{$i}

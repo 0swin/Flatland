@@ -1,6 +1,7 @@
 Controller.prototype.handleTrackingResults = function(faces) {
 
   var firstFace = faces[0];
+  console.log(firstFace);
   if (firstFace.state === this.brfv4.BRFState.FACE_TRACKING_START ||
     firstFace.state === this.brfv4.BRFState.FACE_TRACKING) {
     if (boolDisplayCTA === true) {
@@ -45,7 +46,7 @@ function getAllChild(parent, selector) {
 /*-------------------------------------------------------
 Variables
 --------------------------------------------------------*/
-// var ctrl = new Controller(1280, 720, 30, "webcam", "canvasData");
+// var ctrl = new Controller(640, 480, 25, "webcam", "canvasData");
 // var cta = document.getElementById("CTA");
 // var timer;
 // var boolDisplayCTA = true;
@@ -75,20 +76,21 @@ function createFacePart(height, width, posMin, posMax, rotMin, rotMax, calque, c
   lottieContainer.appendChild(facePart)
   facePart.style.zIndex = i;
   facePart.style.position = "absolute";
-  facePart.style.height = height + "px";
-  facePart.style.width = width + "px";
+  facePart.style.height = height + "%";
+  facePart.style.width = width + "%";
   //ROTATION ALEATOIRE
   facePart.style.transform = "rotate(" + getRandomInt(rotMin, rotMax) + "deg)";
   // POSITION ALEATOIRE
-  facePart.style.top = getRandomInt(posMin, posMax) + "px";
-  facePart.style.left = getRandomInt(posMin, posMax) + "px";
+  facePart.style.top = getRandomInt(posMin, posMax) + "%";
+  facePart.style.left = getRandomInt(posMin, posMax) + "%";
   // COULEUR FOND ALEATOIRE
-  var hue = globalHue + getRandomInt(-30, 30)
+  var hue = globalHue + getRandomInt(0, 60)
   var saturation = getRandomInt(60, 100)
   var lightness = getRandomInt(40, 60)
-  var hsl = "hsl(" + hue + "," + saturation + "%," + lightness + "%)";
+  var hslFill = "hsl(" + hue + "," + saturation + "%," + lightness + "%)";
   var hslStroke = "hsl(" + hue + "," + (saturation + 20) + "%," + (lightness - 30) + "%)";
-  console.log(hsl);
+  console.log("Fill " + hslFill);
+  console.log("Stroke " + hslStroke);
 
   var animationData = {
     container: facePart,
@@ -106,20 +108,21 @@ function createFacePart(height, width, posMin, posMax, rotMin, rotMax, calque, c
     let childFill = getAllChild("facePart" + index, ".fill");
     for (let j = 0; j < childFill.length; j++) {
       // console.log(child[j]);
-      childFill[j].style.fill = hsl;
+      childFill[j].style.fill = hslFill;
     };
     let childStroke = getAllChild("facePart" + index, ".stroke");
     for (let j = 0; j < childStroke.length; j++) {
       childStroke[j].style.stroke = hslStroke;
+      childStroke[j].style.strokeWidth = "1%"
     };
     facePart.style.opacity = 1;
   });
 };
 
 for (var i = 1; i <= 3; i++) {
-  createFacePart(350, 350, 0, 25, 0, 360, "calque2", 1, 8);
+  createFacePart(75, 75, 12.5, 25, 0, 360, "calque2", 1, 12);
 };
 
 for (var i = 4; i <= 7; i++) {
-  createFacePart(100, 100, 25, 225, -30, 0, "calque1", 1, 7);
+  createFacePart(25, 25, 12.5, 62.5, -30, 0, "calque1", 1, 7);
 };
