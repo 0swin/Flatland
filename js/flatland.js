@@ -61,6 +61,13 @@ FLATLANDER GENERATION
 
 var lottieContainer = document.getElementById("lottieContainer");
 
+function createGlobalColor() {
+  var hue = getRandomInt(0, 359);
+  return hue;
+}
+
+var globalHue = createGlobalColor()
+
 function createFacePart(height, width, posMin, posMax, calque, calqueMin, calqueMax) {
   // GÉNÉRER UNE DIV POUR CHAQUE MORCEAU DE VISAGE
   var facePart = document.createElement("div");
@@ -76,9 +83,9 @@ function createFacePart(height, width, posMin, posMax, calque, calqueMin, calque
   facePart.style.left = getRandomInt(posMin, posMax) + "px";
 
   // COULEUR ALEATOIRE
-  var hue = getRandomInt(0, 359);
-  var saturation = getRandomInt(80, 100);
-  var lightness = getRandomInt(40, 60);
+  var hue = globalHue + getRandomInt(-30, 30)
+  var saturation = 80 + getRandomInt(-30, 30)
+  var lightness = 50 + getRandomInt(-30, 30)
   var hsl = "hsl(" + hue + "," + saturation + "%," + lightness + "%)";
   console.log(hsl);
 
@@ -94,12 +101,13 @@ function createFacePart(height, width, posMin, posMax, calque, calqueMin, calque
   let index = i;
   //we add an event to get all the elements when tey are add to the DOM
   anim.addEventListener('DOMLoaded', function() {
-    console.log("facePart" + index);
+    // console.log("facePart" + index);
     let child = getAllChild("facePart" + index, ".fill");
     for (let j = 0; j < child.length; j++) {
-      console.log(child[j]);
+      // console.log(child[j]);
       child[j].style.fill = hsl;
     };
+    facePart.style.opacity = 1;
   });
 };
 
@@ -108,5 +116,5 @@ for (var i = 1; i <= 3; i++) {
 };
 
 for (var i = 4; i <= 7; i++) {
-  createFacePart(100, 100, 25, 225, "calque1", 1, 6);
+  createFacePart(100, 100, 25, 225, "calque1", 1, 7);
 };

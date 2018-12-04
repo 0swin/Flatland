@@ -32,10 +32,13 @@ body
   height: 400px
   position: relative
   border: solid 1px rgba(0, 255/2, 255, 0.5)
-  .fill
-    fill: red
   .stroke
     stroke-linejoin: round
     stroke-linecap: round
     stroke-width: 15px
-    stroke: darkred
+    stroke: black
+
+@for $i from 1 through 7
+  #facePart#{$i}
+    opacity: 0
+    transition: 0.2s

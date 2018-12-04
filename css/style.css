@@ -40,13 +40,58 @@ body {
   border: solid 1px rgba(0, 128, 255, 0.5);
 }
 
-#lottieContainer .fill {
-  fill: red;
-}
-
 #lottieContainer .stroke {
   stroke-linejoin: round;
   stroke-linecap: round;
   stroke-width: 15px;
-  stroke: darkred;
+  stroke: black;
+}
+
+#facePart1 {
+  opacity: 0;
+  -webkit-transition: 0.2s;
+  -o-transition: 0.2s;
+  transition: 0.2s;
+}
+
+#facePart2 {
+  opacity: 0;
+  -webkit-transition: 0.2s;
+  -o-transition: 0.2s;
+  transition: 0.2s;
+}
+
+#facePart3 {
+  opacity: 0;
+  -webkit-transition: 0.2s;
+  -o-transition: 0.2s;
+  transition: 0.2s;
+}
+
+#facePart4 {
+  opacity: 0;
+  -webkit-transition: 0.2s;
+  -o-transition: 0.2s;
+  transition: 0.2s;
+}
+
+#facePart5 {
+  opacity: 0;
+  -webkit-transition: 0.2s;
+  -o-transition: 0.2s;
+  transition: 0.2s;
+}
+
+#facePart6 {
+  opacity: 0;
+  -webkit-transition: 0.2s;
+  -o-transition: 0.2s;
+  transition: 0.2s;
+}
+
+#facePart7 {
+  opacity: 0;
+  -webkit-transition: 0.2s;
+  -o-transition: 0.2s;
+  transition: 0.2s;
 }
