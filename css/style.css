@@ -55,6 +55,11 @@ body {
   position: absolute;
   top: 0;
   left: 0;
+  -webkit-filter: grayscale(85%) contrast(50%);
+  filter: grayscale(85%) contrast(50%);
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
 }
 
 #lottieContainer .stroke {

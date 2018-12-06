@@ -25,6 +25,7 @@ Controller.prototype.handleTrackingResults = function(faces) {
       console.log("Visage detecté, cta non affiché")
     }
     var smile = this.getSmileFactor(firstFace);
+    console.log(smile);
     var yawn = this.getYawnFactor(firstFace);
     // console.log("smile factor: " + smile + " yawn factor: " + yawn)
   } else {
@@ -39,7 +40,6 @@ Controller.prototype.handleTrackingResults = function(faces) {
   var scale, ix, iy;
   var imageData;
   var divOverlay = document.getElementById("faceOverlay");
-
   let nx = (firstFace.bounds.x / webcamWidth) * window.innerWidth; // * scale + ix;
   let ny = (firstFace.bounds.y / webcamHeight) * window.innerHeight; // * scale + iy;
   let nw = (firstFace.bounds.width / webcamWidth) * window.innerWidth;
@@ -50,6 +50,14 @@ Controller.prototype.handleTrackingResults = function(faces) {
   lottieContainer.style.left = nx + "px";
   lottieContainer.style.height = nh + "px";
   lottieContainer.style.width = nw + "px";
+
+  if (0.3 < smile && smile <= 1) {
+    lottieContainer.style.filter = "grayscale(0%)";
+    lottieContainer.style.WebkitFilter = "grayscale(0%)";
+  } else {
+    lottieContainer.style.filter = "grayscale(85%)";
+    lottieContainer.style.WebkitFilter = "grayscale(85%)";
+  }
 }
 
 function launchXP() {
