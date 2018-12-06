@@ -25,7 +25,6 @@ Controller.prototype.handleTrackingResults = function(faces) {
       console.log("Visage detecté, cta non affiché")
     }
     var smile = this.getSmileFactor(firstFace);
-    console.log(smile);
     var yawn = this.getYawnFactor(firstFace);
     // console.log("smile factor: " + smile + " yawn factor: " + yawn)
   } else {
