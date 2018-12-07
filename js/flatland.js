@@ -5,6 +5,7 @@ var webcamWidth = 1280;
 var webcamHeight = 720;
 var ctrl = new Controller(webcamWidth, webcamHeight, 30, "webcam", "canvasData");
 var cta = document.getElementById("CTA");
+var instructions = document.getElementById("instructions");
 var timer;
 var boolDisplayCTA = true;
 
@@ -13,7 +14,11 @@ ctrl.setNumberOfFacesToTrack(2);
 ctrl.initTracking();
 ctrl.setDebug(true);
 
-cta.style.background = "hsl(" + getRandomInt(0, 360) + ", 90%, 30%)"
+var globalHue = getRandomInt(0, 359)
+
+var bgColor = "hsl(" + globalHue + ", 90%, 30%)";
+cta.style.background = bgColor;
+instructions.style.background = bgColor;
 
 Controller.prototype.handleTrackingResults = function(faces) {
   var firstFace = faces[0];
@@ -26,13 +31,12 @@ Controller.prototype.handleTrackingResults = function(faces) {
       console.log("Visage detecté, cta non affiché")
     }
     var smile = this.getSmileFactor(firstFace);
+    console.log(smile);
     var yawn = this.getYawnFactor(firstFace);
     // console.log("smile factor: " + smile + " yawn factor: " + yawn)
   } else {
     if (boolDisplayCTA === false) {
       timer = setTimeout(displayCTA, 5000, firstFace, this.brfv4.BRFState.FACE_DETECTION);
-      cta.style.background = "hsl(" + getRandomInt(0, 360) + ", 90%, 30%)"
-      boolDisplayCTA = true;
       console.log("Visage non detecté, cta affiché")
     }
   }
@@ -88,13 +92,6 @@ FLATLANDER GENERATION
 --------------------------------------------------------*/
 
 var lottieContainer = document.getElementById("lottieContainer");
-
-function createGlobalColor() {
-  var hue = getRandomInt(0, 359);
-  return hue;
-}
-
-var globalHue = createGlobalColor()
 
 function createFacePart(height, width, posMin, posMax, rotMin, rotMax, calque, calqueMin, calqueMax, hueOffset) {
   // GÉNÉRER UNE DIV POUR CHAQUE MORCEAU DE VISAGE
