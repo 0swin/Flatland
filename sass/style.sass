@@ -2,7 +2,9 @@ body
   margin: 0
   padding: 0
   overflow: hidden
-  // background: #000
+  font-family: 'Montserrat', sans-serif
+  font-kerning: normal
+  text-transform: uppercase
 
 #faceOverlay
   float: left
@@ -32,14 +34,34 @@ body
 #CTA
   color: white
   position: absolute
-  background: blue
   top: 0px
   width: 100%
   height: 100%
-  text-align: center
   transition: opacity 0.5s
   z-index: 8
-  // display: none
+  .textContainer
+    margin-left: 10%
+    position: absolute
+    top: 50%
+    transform: translateY(-70%)
+    h1
+      font-size: 6em
+      letter-spacing: 0.1em
+      line-height: 0.15em
+      font-weight: 700
+
+    h2
+      font-size: 2.5em
+      line-height: 0.25em
+      opacity: 0.6
+      font-weight: 700
+    h3
+      font-size: 1.75em
+      font-weight: 500
+      strong
+        opacity: 0.6
+        font-weight: 700
+
 
 #lottieContainer
   width: 400px
@@ -48,8 +70,7 @@ body
   top: 0
   left: 0
   filter: grayscale(85%) contrast(50%)
-  // border: solid 1px rgba(0, 255/2, 255, 0.5)
-  transition: 0.5s
+  transition: filter 0.5s
   .stroke
     stroke-linejoin: round
     stroke-linecap: round

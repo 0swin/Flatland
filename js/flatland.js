@@ -13,8 +13,9 @@ ctrl.setNumberOfFacesToTrack(2);
 ctrl.initTracking();
 ctrl.setDebug(true);
 
-Controller.prototype.handleTrackingResults = function(faces) {
+cta.style.background = "hsl(" + getRandomInt(0, 360) + ", 90%, 30%)"
 
+Controller.prototype.handleTrackingResults = function(faces) {
   var firstFace = faces[0];
   // console.log(firstFace);
   if (firstFace.state === this.brfv4.BRFState.FACE_TRACKING_START ||
@@ -30,6 +31,7 @@ Controller.prototype.handleTrackingResults = function(faces) {
   } else {
     if (boolDisplayCTA === false) {
       timer = setTimeout(displayCTA, 5000, firstFace, this.brfv4.BRFState.FACE_DETECTION);
+      cta.style.background = "hsl(" + getRandomInt(0, 360) + ", 90%, 30%)"
       boolDisplayCTA = true;
       console.log("Visage non detecté, cta affiché")
     }
@@ -45,7 +47,7 @@ Controller.prototype.handleTrackingResults = function(faces) {
   let nh = (firstFace.bounds.height / webcamHeight) * window.innerHeight;
   let degrees = firstFace.rotationZ * 180 / Math.PI;
   lottieContainer.style.transform = 'rotate(' + degrees + 'deg) scale(1.5)';
-  lottieContainer.style.top = ny - (window.innerHeight / 10) + "px";
+  lottieContainer.style.top = ny + "px";
   lottieContainer.style.left = nx + "px";
   lottieContainer.style.height = nh + "px";
   lottieContainer.style.width = nw + "px";
