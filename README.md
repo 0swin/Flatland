@@ -8,6 +8,7 @@
 
 ### À faire
 - Génération d'un avatar à chaque affichage du Splashscreen, sans reload de la page
+- Compatibilité mobile
 
 ### Contributeurs
 
