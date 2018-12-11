@@ -4,11 +4,8 @@
 - Splashscreen
 - Génération d'un avatar à chaque reload de la page  
 - Tracking du visage  
-- Détection du sourire  
-
-### À faire
+- Détection du sourire
 - Génération d'un avatar à chaque affichage du Splashscreen, sans reload de la page
-- Compatibilité mobile
 
 ### Contributeurs
 
