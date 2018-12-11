@@ -15,7 +15,6 @@ ctrl.initTracking();
 ctrl.setDebug(true);
 
 var globalHue = getRandomInt(0, 359)
-
 var bgColor = "hsl(" + globalHue + ", 90%, 30%)";
 cta.style.background = bgColor;
 instructions.style.background = bgColor;
@@ -37,8 +36,8 @@ Controller.prototype.handleTrackingResults = function(faces) {
   } else {
     if (boolDisplayCTA === false) {
       timer = setTimeout(displayCTA, 5000, firstFace, this.brfv4.BRFState.FACE_DETECTION);
-      console.log("Visage non detecté, cta affiché")
       boolDisplayCTA = true;
+      console.log("Visage non detecté, cta affiché")
     }
   }
 
@@ -73,6 +72,9 @@ function launchXP() {
 function displayCTA(face, untrackState) {
   if (face.state === untrackState) {
     cta.style.opacity = 1.0;
+    var lottieContainer = document.getElementById("lottieContainer");
+    lottieContainer.innerHTML = '';
+    createFlatlander();
     clearTimeout(timer);
   }
 }
@@ -91,63 +93,67 @@ function getAllChild(parent, selector) {
 /*-------------------------------------------------------
 FLATLANDER GENERATION
 --------------------------------------------------------*/
+function createFlatlander() {
+  var lottieContainer = document.getElementById("lottieContainer");
 
-var lottieContainer = document.getElementById("lottieContainer");
+  function createFacePart(i, height, width, posMin, posMax, rotMin, rotMax, calque, calqueMin, calqueMax, hueOffset) {
+    // GÉNÉRER UNE DIV POUR CHAQUE MORCEAU DE VISAGE
+    var facePart = document.createElement("div");
+    facePart.id = "facePart" + i;
+    lottieContainer.appendChild(facePart)
+    facePart.style.zIndex = i;
+    facePart.style.position = "absolute";
+    facePart.style.height = height + "%";
+    facePart.style.width = width + "%";
+    //ROTATION ALEATOIRE
+    facePart.style.transform = "rotate(" + getRandomInt(rotMin, rotMax) + "deg)";
+    // POSITION ALEATOIRE
+    facePart.style.top = getRandomInt(posMin, posMax) + "%";
+    facePart.style.left = getRandomInt(posMin, posMax) + "%";
+    // COULEUR FOND ALEATOIRE
+    var hue = globalHue + hueOffset + getRandomInt(0, 40)
+    var saturation = getRandomInt(60, 100)
+    var lightness = getRandomInt(40, 60)
+    var hslFill = "hsl(" + hue + "," + saturation + "%," + lightness + "%)";
+    var hslStroke = "hsl(" + hue + "," + (saturation + 20) + "%," + (lightness - 30) + "%)";
+    // console.log("Fill " + hslFill);
+    // console.log("Stroke " + hslStroke);
 
-function createFacePart(height, width, posMin, posMax, rotMin, rotMax, calque, calqueMin, calqueMax, hueOffset) {
-  // GÉNÉRER UNE DIV POUR CHAQUE MORCEAU DE VISAGE
-  var facePart = document.createElement("div");
-  facePart.id = "facePart" + i;
-  lottieContainer.appendChild(facePart)
-  facePart.style.zIndex = i;
-  facePart.style.position = "absolute";
-  facePart.style.height = height + "%";
-  facePart.style.width = width + "%";
-  //ROTATION ALEATOIRE
-  facePart.style.transform = "rotate(" + getRandomInt(rotMin, rotMax) + "deg)";
-  // POSITION ALEATOIRE
-  facePart.style.top = getRandomInt(posMin, posMax) + "%";
-  facePart.style.left = getRandomInt(posMin, posMax) + "%";
-  // COULEUR FOND ALEATOIRE
-  var hue = globalHue + hueOffset + getRandomInt(0, 40)
-  var saturation = getRandomInt(60, 100)
-  var lightness = getRandomInt(40, 60)
-  var hslFill = "hsl(" + hue + "," + saturation + "%," + lightness + "%)";
-  var hslStroke = "hsl(" + hue + "," + (saturation + 20) + "%," + (lightness - 30) + "%)";
-  // console.log("Fill " + hslFill);
-  // console.log("Stroke " + hslStroke);
-
-  var animationData = {
-    container: facePart,
-    renderer: "svg",
-    loop: true,
-    autoplay: true,
-    path: "json/" + calque + "/" + getRandomInt(calqueMin, calqueMax) + ".json"
+    var animationData = {
+      container: facePart,
+      renderer: "svg",
+      loop: true,
+      autoplay: true,
+      path: "json/" + calque + "/" + getRandomInt(calqueMin, calqueMax) + ".json"
+    };
+    var anim = lottie.loadAnimation(animationData);
+    //we define a local variable to save the index in the for loop
+    let index = i;
+    //we add an event to get all the elements when tey are add to the DOM
+    anim.addEventListener('DOMLoaded', function() {
+      // console.log("facePart" + index);
+      let childFill = getAllChild("facePart" + index, ".fill");
+      for (let j = 0; j < childFill.length; j++) {
+        // console.log(child[j]);
+        childFill[j].style.fill = hslFill;
+      };
+      let childStroke = getAllChild("facePart" + index, ".stroke");
+      for (let j = 0; j < childStroke.length; j++) {
+        childStroke[j].style.stroke = hslStroke;
+        childStroke[j].style.strokeWidth = "1%"
+      };
+      facePart.style.opacity = 1;
+    });
   };
-  var anim = lottie.loadAnimation(animationData);
-  //we define a local variable to save the index in the for loop
-  let index = i;
-  //we add an event to get all the elements when tey are add to the DOM
-  anim.addEventListener('DOMLoaded', function() {
-    // console.log("facePart" + index);
-    let childFill = getAllChild("facePart" + index, ".fill");
-    for (let j = 0; j < childFill.length; j++) {
-      // console.log(child[j]);
-      childFill[j].style.fill = hslFill;
-    };
-    let childStroke = getAllChild("facePart" + index, ".stroke");
-    for (let j = 0; j < childStroke.length; j++) {
-      childStroke[j].style.stroke = hslStroke;
-      childStroke[j].style.strokeWidth = "1%"
-    };
-    facePart.style.opacity = 1;
-  });
-};
 
-for (var i = 1; i <= 3; i++) {
-  createFacePart(75, 75, 12.5, 25, 0, 360, "calque2", 1, 12, 0);
-};
+  for (var i = 1; i <= 3; i++) {
+    createFacePart(i, 75, 75, 12.5, 25, 0, 360, "calque2", 1, 12, 0);
+  };
 
-for (var i = 4; i <= 7; i++) {
-  createFacePart(25, 25, 12.5, 62.5, -30, 0, "calque1", 1, 7, 180);
-};
+  for (var i = 4; i <= 7; i++) {
+    createFacePart(i, 25, 25, 12.5, 62.5, -30, 0, "calque1", 1, 7, 180);
+  };
+
+}
+
+createFlatlander();
