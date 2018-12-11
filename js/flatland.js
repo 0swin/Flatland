@@ -38,6 +38,7 @@ Controller.prototype.handleTrackingResults = function(faces) {
     if (boolDisplayCTA === false) {
       timer = setTimeout(displayCTA, 5000, firstFace, this.brfv4.BRFState.FACE_DETECTION);
       console.log("Visage non detecté, cta affiché")
+      boolDisplayCTA = true;
     }
   }
 
