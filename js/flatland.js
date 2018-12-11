@@ -96,7 +96,7 @@ FLATLANDER GENERATION
 function createFlatlander() {
   var globalHue = getRandomInt(0, 359)
   var bgColor = "hsl(" + globalHue + ", 90%, 30%)";
-  
+
   var lottieContainer = document.getElementById("lottieContainer");
 
   function createFacePart(i, height, width, posMin, posMax, rotMin, rotMax, calque, calqueMin, calqueMax, hueOffset) {
