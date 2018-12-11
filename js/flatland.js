@@ -37,8 +37,8 @@ Controller.prototype.handleTrackingResults = function(faces) {
   } else {
     if (boolDisplayCTA === false) {
       timer = setTimeout(displayCTA, 5000, firstFace, this.brfv4.BRFState.FACE_DETECTION);
-      console.log("Visage non detecté, cta affiché")
       boolDisplayCTA = true;
+      console.log("Visage non detecté, cta affiché")
     }
   }
 
@@ -94,7 +94,7 @@ FLATLANDER GENERATION
 
 var lottieContainer = document.getElementById("lottieContainer");
 
-function createFacePart(height, width, posMin, posMax, rotMin, rotMax, calque, calqueMin, calqueMax, hueOffset) {
+function createFacePart(i, height, width, posMin, posMax, rotMin, rotMax, calque, calqueMin, calqueMax, hueOffset) {
   // GÉNÉRER UNE DIV POUR CHAQUE MORCEAU DE VISAGE
   var facePart = document.createElement("div");
   facePart.id = "facePart" + i;
@@ -144,10 +144,10 @@ function createFacePart(height, width, posMin, posMax, rotMin, rotMax, calque, c
   });
 };
 
-for (var i = 1; i <= 3; i++) {
-  createFacePart(75, 75, 12.5, 25, 0, 360, "calque2", 1, 12, 0);
+for (let i = 1; i <= 3; i++) {
+  createFacePart(i, 75, 75, 12.5, 25, 0, 360, "calque2", 1, 12, 0);
 };
 
-for (var i = 4; i <= 7; i++) {
-  createFacePart(25, 25, 12.5, 62.5, -30, 0, "calque1", 1, 7, 180);
+for (let i = 4; i <= 7; i++) {
+  createFacePart(i, 25, 25, 12.5, 62.5, -30, 0, "calque1", 1, 7, 180);
 };
